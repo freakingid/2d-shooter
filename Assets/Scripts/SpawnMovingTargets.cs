@@ -23,10 +23,13 @@ public class SpawnMovingTargets : MonoBehaviour
 		// Make newPosition for spawning of new target
 		// Player.x + range, position of object linked to this script (targetSpawner)
 		Vector3 newPosition = new Vector3 (GameObject.Find ("Player").transform.position.x + range, transform.position.y, 0);
-		// Spawn a new target every 1 seconds
-		if (timer >= 1) {
+		// Spawn a new target every 2 seconds
+		if (timer >= 2) {
 			GameObject t = (GameObject)(Instantiate (newObject, newPosition, Quaternion.identity));
-			t.GetComponent<ManageTargetHealth> ().type = ManageTargetHealth.TARGET_BOULDER;
+			// This works, but do we have to do SpriteRenderer?
+			// t.GetComponent<SpriteRenderer> ().color = Color.red;
+			t.GetComponent<Renderer> ().material.color = Color.red;
+
 			timer = 0;
 		}
 	}
