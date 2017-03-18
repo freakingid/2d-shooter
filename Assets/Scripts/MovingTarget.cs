@@ -6,7 +6,7 @@ public class MovingTarget : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<Rigidbody2D> ().velocity = Vector2.down * 5;
+		GetComponent<Rigidbody2D> ().velocity = Vector2.down * 3;
 	}
 	
 	// Update is called once per frame
