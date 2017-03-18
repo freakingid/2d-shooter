@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnMovingTargets : MonoBehaviour {
+public class SpawnMovingTargets : MonoBehaviour
+{
 
 	float timer = 0;
 	public GameObject newObject;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		timer += Time.deltaTime;
 		// random horizontal offset to left or right of player
 		float range = Random.Range (-10, 10);
@@ -23,6 +26,7 @@ public class SpawnMovingTargets : MonoBehaviour {
 		// Spawn a new target every 1 seconds
 		if (timer >= 1) {
 			GameObject t = (GameObject)(Instantiate (newObject, newPosition, Quaternion.identity));
+			t.GetComponent<ManageTargetHealth> ().type = ManageTargetHealth.TARGET_BOULDER;
 			timer = 0;
 		}
 	}

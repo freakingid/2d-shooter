@@ -2,26 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour
+{
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		// Destroy bullet after 10 seconds, no matter what
 		// Forget that, how about 3 seconds?
-		Destroy(gameObject, 3);
+		Destroy (gameObject, 3);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 
 	// Items colliding with bullet?
-	void OnCollisionEnter2D(Collision2D coll) {
+	void OnCollisionEnter2D (Collision2D coll)
+	{
 		// Is it tagged "target"?
-		if(coll.gameObject.tag == "Target" ) {
+		if (coll.gameObject.tag == "Target") {
 			// Destroy the thing the bullet hit
-			Destroy (coll.gameObject);
+			// Destroy (coll.gameObject);
+			// Execute ManageTargetHealth.gotHit with 10 as parameter
+			coll.gameObject.GetComponent<ManageTargetHealth> ().gotHit (10);
 			// Destroy the bullet itself
 			Destroy (gameObject);
 		}
