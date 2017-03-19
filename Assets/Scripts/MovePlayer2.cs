@@ -6,6 +6,7 @@ public class MovePlayer2 : MonoBehaviour
 {
 
 	public GameObject bullet;
+	public AudioClip fireSound;
 
 	// Use this for initialization
 	void Start ()
@@ -36,6 +37,8 @@ public class MovePlayer2 : MonoBehaviour
 			GameObject b = (GameObject)(Instantiate (bullet, transform.position + transform.up * 1.5f, Quaternion.identity));
 			// Propel the bullet in the up direction. Is this relevant to rotation of the Player?
 			b.GetComponent<Rigidbody2D> ().AddForce (transform.up * 1000);
+			GetComponent<AudioSource> ().clip=fireSound;
+			GetComponent<AudioSource> ().Play ();
 		}
 
 		// Position of Player in relation to camera view

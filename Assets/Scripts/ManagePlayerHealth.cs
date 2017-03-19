@@ -9,6 +9,7 @@ public class ManagePlayerHealth : MonoBehaviour
 	public float timerForShield;
 	public bool startInvincibility;
 	public int score;
+	public AudioClip hitSound;
 
 	// Use this for initialization
 	void Start ()
@@ -51,6 +52,9 @@ public class ManagePlayerHealth : MonoBehaviour
 
 	void DestroyPlayer ()
 	{
+		// Play explosion sound
+		GetComponent<AudioSource>().clip=hitSound;
+		GetComponent<AudioSource> ().Play ();
 		// Just reloads the scene from the beginning, like room.restart in GM
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
