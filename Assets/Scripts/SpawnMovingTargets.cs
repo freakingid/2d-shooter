@@ -7,6 +7,7 @@ public class SpawnMovingTargets : MonoBehaviour
 
 	float timer = 0;
 	public GameObject newObject;
+	public GameObject bonus;
 	private int newBoulderType;
 
 	// Use this for initialization
@@ -24,14 +25,18 @@ public class SpawnMovingTargets : MonoBehaviour
 		// Make newPosition for spawning of new target
 		// Player.x + range, position of object linked to this script (targetSpawner)
 		Vector3 newPosition = new Vector3 (GameObject.Find ("Player").transform.position.x + range, transform.position.y, 0);
-		float respawnTime = 5/GameObject.Find("gameManager").GetComponent<ManageShooterGame>().difficulty;
-		if(timer >= respawnTime){
-			GameObject t = (GameObject)(Instantiate (newObject, newPosition, Quaternion.identity));
-			// Randomly decide what boulder type
-			newBoulderType = Random.Range (0, 3);
-			// Set the boulder type accordingly; This should also set color when it sets the health amount;
-			t.GetComponent<ManageTargetHealth> ().type = newBoulderType;
-			// Start over for creating new target
+		float respawnTime = 5 / GameObject.Find ("gameManager").GetComponent<ManageShooterGame> ().difficulty;
+		if (timer >= respawnTime) {
+			float typeOfObjectSpawn = Random.Range (0, 100);
+			GameObject t;
+			if (typeOfObjectSpawn >= 50) {
+				print ("Spawning a target");
+				t = (GameObject)(Instantiate (newObject, newPosition, Quaternion.identity));
+				t.GetComponent<ManageTargetHealth> ().type = ManageTargetHealth.TARGET_BOULDER;
+			} else {
+				print ("Spawning a bonus");
+				t = (GameObject)(Instantiate (bonus, newPosition, Quaternion.identity));
+			}
 			timer = 0;
 		}
 	}
