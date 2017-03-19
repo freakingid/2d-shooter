@@ -28,6 +28,8 @@ public class Bullet : MonoBehaviour
 			// Destroy (coll.gameObject);
 			// Execute ManageTargetHealth.gotHit with 10 as parameter
 			coll.gameObject.GetComponent<ManageTargetHealth> ().gotHit (10);
+			// Add score
+			GameObject.Find("Player").GetComponent<ManagePlayerHealth>().increaseScore();
 			// Destroy the bullet itself
 			Destroy (gameObject);
 		}

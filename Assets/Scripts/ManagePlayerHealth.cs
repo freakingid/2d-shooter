@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ManagePlayerHealth : MonoBehaviour
 {
 	public float timerForShield;
 	public bool startInvincibility;
+	public int score;
+
 	// Use this for initialization
 	void Start ()
 	{
+		score = 0;
 		GameObject.Find ("shield").GetComponent<SpriteRenderer> ().enabled = false;
+		GameObject.Find ("uiScore").GetComponent<Text> ().text = "Score: " + score;
 	}
 	
 	// Update is called once per frame
@@ -48,5 +53,10 @@ public class ManagePlayerHealth : MonoBehaviour
 	{
 		// Just reloads the scene from the beginning, like room.restart in GM
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
+
+	public void increaseScore(){
+		score++;
+		GameObject.Find ("uiScore").GetComponent<Text> ().text = "Score: " + score;
 	}
 }
