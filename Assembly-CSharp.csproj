@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\IgnoreCollision.cs" />
      <Compile Include="Assets\Scripts\ManagePlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\ManageShooterGame.cs" />
      <Compile Include="Assets\Scripts\ManageTargetHealth.cs" />
      <Compile Include="Assets\Scripts\MoveNPC.cs" />
      <Compile Include="Assets\Scripts\MovePlayer2.cs" />

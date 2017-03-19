@@ -24,8 +24,8 @@ public class SpawnMovingTargets : MonoBehaviour
 		// Make newPosition for spawning of new target
 		// Player.x + range, position of object linked to this script (targetSpawner)
 		Vector3 newPosition = new Vector3 (GameObject.Find ("Player").transform.position.x + range, transform.position.y, 0);
-		// Spawn a new target every 2 seconds
-		if (timer >= 2) {
+		float respawnTime = 5/GameObject.Find("gameManager").GetComponent<ManageShooterGame>().difficulty;
+		if(timer >= respawnTime){
 			GameObject t = (GameObject)(Instantiate (newObject, newPosition, Quaternion.identity));
 			// Randomly decide what boulder type
 			newBoulderType = Random.Range (0, 3);

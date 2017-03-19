@@ -16,7 +16,8 @@ public class SpawnNPCs : MonoBehaviour
 	void Update ()
 	{
 		timer += Time.deltaTime;
-		if (timer >= 2) {
+		float respawnTime = 5/GameObject.Find("gameManager").GetComponent<ManageShooterGame>().difficulty;
+		if(timer >= respawnTime){
 			timer = 0;
 			SpawnNPC (npc1);
 		}
