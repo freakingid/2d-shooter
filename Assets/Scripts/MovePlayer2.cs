@@ -37,5 +37,25 @@ public class MovePlayer2 : MonoBehaviour
 			// Propel the bullet in the up direction. Is this relevant to rotation of the Player?
 			b.GetComponent<Rigidbody2D> ().AddForce (transform.up * 1000);
 		}
+
+		// Position of Player in relation to camera view
+		// (transform.position is center of our player)
+		Vector3 viewPortPosition = Camera.main.WorldToViewportPoint (transform.position);
+		// Half of sprite width, using coordinates relative to camera view
+		Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint (transform.position + Vector3.left / 2);
+		// Half of sprite height
+		Vector3 viewPortYDelta = Camera.main.WorldToViewportPoint (transform.position + Vector3.up / 2);
+
+		// Position change based on our sprite heigh and widht halves figured above
+		float deltaX = viewPortPosition.x - viewPortXDelta.x;
+		float deltaY = viewPortPosition.y - viewPortYDelta.y;
+
+		// Now set the player's position within the viewport, but clamp it
+		viewPortPosition.x = Mathf.Clamp (viewPortPosition.x, 0 + deltaX, 1 - deltaX);
+		viewPortPosition.y = Mathf.Clamp (viewPortPosition.y, 0 + deltaY, 1 - deltaY);
+
+		// Finally, we actually need the position set in World coordinates.
+		// This is what actually moves the player to the right location.
+		transform.position = Camera.main.ViewportToWorldPoint (viewPortPosition);
 	}
 }
